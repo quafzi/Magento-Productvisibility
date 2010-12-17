@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Netresearch_Productvisibility
+ * @package    Netresearch_Productvisibility
+ * @author     Thomas Kappel <thomas.kappel@netresearch.de>
+ * @copyright  Copyright (c) 2010 Netresearch GmbH & Co.KG <http://www.netresearch.de/>
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ **/
+-->
+
+<config>
+    <modules>
+        <Netresearch_Productvisibility>
+            <version>0.1.0</version>
+        </Netresearch_Productvisibility>
+    </modules>
+    <global>
+        <helpers>
+            <productvisibility>
+                <class>Netresearch_Productvisibility_Helper</class>
+            </productvisibility>
+        </helpers>
+        <models>
+            <productvisibility>
+                <class>Netresearch_Productvisibility_Model</class>
+            </productvisibility>
+        </models>
+    </global>
+    <adminhtml>
+        <events>
+            <core_block_abstract_prepare_layout_after>
+                <observers>
+                    <productvisibility>
+                        <type>singleton</type>
+                        <class>productvisibility/observer</class>
+                        <method>injectProductEditTab</method>
+                    </productvisibility>
+                </observers>
+            </core_block_abstract_prepare_layout_after>
+        </events>
+    </adminhtml>
+</config>
