@@ -1,0 +1,11 @@
+<?php $_helper = Mage::helper('productvisibility') ?>
+<table class="product_visibility_checkpoints">
+    <?php foreach ($this->getCheckpoints() as $checkpoint => $status): ?>
+        <tr>
+            <th><?php echo $_helper->__($checkpoint) ?></th>
+            <td class="visibility_<?php echo $status ? 'on' : 'off' ?>">
+                <?php echo $status ? '+' : '-' ?>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>

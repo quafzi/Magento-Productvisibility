@@ -16,6 +16,11 @@
         </Netresearch_Productvisibility>
     </modules>
     <global>
+        <blocks>
+            <productvisibility>
+                <class>Netresearch_Productvisibility_Block</class>
+            </productvisibility>
+        </blocks>
         <helpers>
             <productvisibility>
                 <class>Netresearch_Productvisibility_Helper</class>
