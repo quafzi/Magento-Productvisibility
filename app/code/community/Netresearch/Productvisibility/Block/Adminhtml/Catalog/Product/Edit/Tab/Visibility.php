@@ -60,6 +60,31 @@ class Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Vis
             'set visibility to "Catalog" or "Catalog/Search"'
         );
         $this->addCheckpoint(
+            'is enabled in an active website',
+            false,
+            'not yet implemented'
+        );
+        $this->addCheckpoint(
+            'has active category',
+            false,
+            'not yet implemented'
+        );
+        $this->addCheckpoint(
+            'is in stock',
+            false,
+            'not yet implemented'
+        );
+        $this->addCheckpoint(
+            'price index is up to date',
+            false,
+            'not yet implemented'
+        );
+        $this->addCheckpoint(
+            'stock index is up to date',
+            false,
+            'not yet implemented'
+        );
+        $this->addCheckpoint(
             'is salable',
             $this->_product->isSalable(),
             'please check the other problems first'
