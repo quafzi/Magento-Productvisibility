@@ -1,0 +1,7 @@
+<layout>
+    <adminhtml_catalog_product_edit>
+        <reference name="head">
+            <action method="addCss"><name>netresearch/productvisibility.css</name></action>
+        </reference>
+    </adminhtml_catalog_product_edit>
+</layout>

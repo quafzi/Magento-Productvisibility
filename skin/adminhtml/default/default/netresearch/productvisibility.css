@@ -1,0 +1,27 @@
+table.product_visibility_checkpoints tr {
+    padding-bottom: 3px;
+}
+
+table.product_visibility_checkpoints tr th {
+    padding-right:  10px;
+    text-align:     right;
+}
+
+table.product_visibility_checkpoints tr td.visibility_on {
+    background:     green;
+    color:          transparent;
+    width:          20px;
+    height:         20px;
+}
+
+table.product_visibility_checkpoints tr td.visibility_off {
+    background:     red;
+    color:          transparent;
+    width:          20px;
+    height:         20px;
+}
+
+table.product_visibility_checkpoints tr td.howto {
+    padding-left:   10px;
+    font-style:     italic;
+}

@@ -33,6 +33,22 @@
         </models>
     </global>
     <adminhtml>
+        <layout>
+            <updates>
+                <productvisibility>
+                    <file>netresearch/productvisibility.xml</file>
+                </productvisibility>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <Netresearch_Productvisibility>
+                    <files>
+                        <default>Netresearch_Productvisibility.csv</default>
+                    </files>
+                </Netresearch_Productvisibility>
+            </modules>
+        </translate>
         <events>
             <core_block_abstract_prepare_layout_after>
                 <observers>

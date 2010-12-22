@@ -1,10 +1,30 @@
 <?php $_helper = Mage::helper('productvisibility') ?>
+<script type="text/javascript">
+<!--
+    function fireEvent(obj,evt){
+    
+        var fireOnThis = obj;
+        if( document.createEvent ) {
+            var evObj = document.createEvent('MouseEvents');
+            evObj.initEvent( evt, true, false );
+            fireOnThis.dispatchEvent(evObj);
+        } else if( document.createEventObject ) {
+            fireOnThis.fireEvent('on'+evt);
+        }
+    }
+//-->
+</script>
 <table class="product_visibility_checkpoints">
-    <?php foreach ($this->getCheckpoints() as $checkpoint => $status): ?>
+    <?php foreach ($this->getCheckpoints() as $checkpoint): ?>
         <tr>
-            <th><?php echo $_helper->__($checkpoint) ?></th>
-            <td class="visibility_<?php echo $status ? 'on' : 'off' ?>">
-                <?php echo $status ? '+' : '-' ?>
+            <th><?php echo $_helper->__($checkpoint->getName()) ?></th>
+            <td class="visibility_<?php echo $checkpoint->isVisible() ? 'on' : 'off' ?>">
+                <?php echo $checkpoint->isVisible() ? '+' : '-' ?>
+            </td>
+            <td class="howto">
+                <?php if (false == $checkpoint->isVisible()): ?>
+                    <?php echo $_helper->__($checkpoint->getHowto()) ?>
+                <?php endif; ?>
             </td>
         </tr>
     <?php endforeach; ?>
