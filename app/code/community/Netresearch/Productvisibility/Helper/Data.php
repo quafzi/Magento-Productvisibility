@@ -1,6 +1,6 @@
 <?php
 /**
- * Netresearch_Productvisibility Producttrigger
+ * Netresearch_Productvisibility
  * 
  * @category   Catalog
  * @package    Netresearch_Productvisibility
@@ -10,22 +10,5 @@
  */
 class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
 {
-    public function getVisibility($product)
-    {
-        Mage::dispatchEvent('catalog_product_is_salable_before', array(
-            'product'   => $this
-        ));
-
-        $salable = $this->getTypeInstance(true)->isSalable($this);
-
-        $object = new Varien_Object(array(
-            'product'    => $this,
-            'is_salable' => $salable
-        ));
-        Mage::dispatchEvent('catalog_product_is_salable_after', array(
-            'product'   => $this,
-            'salable'   => $object
-        ));
-        return $object->getIsSalable();
-    }
+    
 }

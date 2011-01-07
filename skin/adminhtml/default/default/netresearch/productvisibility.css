@@ -25,3 +25,9 @@ table.product_visibility_checkpoints tr td.howto {
     padding-left:   10px;
     font-style:     italic;
 }
+
+table.product_visibility_checkpoints tr td.details {
+    color:          #666;
+    padding-left:   20px;
+    font-style:     italic;
+}
