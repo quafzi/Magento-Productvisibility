@@ -22,8 +22,12 @@
                 <?php echo $checkpoint->isVisible() ? '+' : '-' ?>
             </td>
             <td class="<?php echo $checkpoint->isVisible() ? 'details' : 'howto' ?>">
-                <?php if (false == $checkpoint->isVisible()): ?>
-                    <?php echo $_helper->__($checkpoint->getHowto()) ?>
+                <?php if ($checkpoint->isinvisible()): ?>
+                    <ul>
+                        <?php foreach ($this->getHowto($checkpoint->getName()) as $howto): ?>
+                            <li><?php echo $_helper->__($howto) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 <?php else: ?>
                     <?php echo $checkpoint->getDetails() ?>
                 <?php endif; ?>

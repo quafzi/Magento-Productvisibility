@@ -46,4 +46,14 @@ class Netresearch_Productvisibility_Model_Checkpoint extends Mage_Core_Model_Abs
     {
         return $this->getVisibility();
     }
+    
+    /**
+     * if the current status is invisible
+     * 
+     * @return boolean
+     */
+    public function isInvisible()
+    {
+        return false == $this->isVisible();
+    }
 }

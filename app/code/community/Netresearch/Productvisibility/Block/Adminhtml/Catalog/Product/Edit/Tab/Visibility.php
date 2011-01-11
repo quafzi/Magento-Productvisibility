@@ -31,21 +31,23 @@ class Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Vis
     /**
      * add checkpoint for product visibility
      * 
-     * @param string  $name     Name of the checkpoint
-     * @param boolean $visible  Status
-     * @param string  $howto    Explanation how to change this 
-     * @param string  $details  Some details for the user
+     * @param string  $name         Name of the checkpoint
+     * @param boolean $visible      Status
+     * @param string  $howto        Explanation how to change this 
+     * @param string  $details      Some details for the user
+     * @param array   $dependencies Array of names of checkpoints this one depends on
      * 
      * @return Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Visibility
      */
-    public function addCheckpoint($name, $visible, $howto, $details='')
+    public function addCheckpoint($name, $visible, $howto, $details='', $dependencies=array())
     {
         $checkpoint = Mage::getModel('productvisibility/checkpoint');
         $checkpoint
             ->setName($name)
             ->setHowto($howto)
             ->setVisibility($visible)
-            ->setDetails($details);
+            ->setDetails($details)
+            ->setDependencies($dependencies);
         $this->_checkpoints[$name] = $checkpoint;
         
         return $this;
@@ -105,14 +107,18 @@ class Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Vis
             'check inventory'
         );
         $this->addCheckpoint(
-            'price index is up to date',
-            false,
-            'not yet implemented'
+            'is up to date in price index',
+            $websites = Mage::helper('productvisibility/product')
+                ->isUpToDateInPriceIndex($this->_product),
+            'rebuild price index',
+            null,
+            array('is visible in catalog')
         );
         $this->addCheckpoint(
-            'stock index is up to date',
-            false,
-            'not yet implemented'
+            'is up to date in stock index',
+            $websites = Mage::helper('productvisibility/product')
+                ->isUpToDateInStockIndex($this->_product),
+            'rebuild stock index'
         );
         $this->addCheckpoint(
             'is salable',
@@ -121,5 +127,30 @@ class Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Vis
         );
         
         return $this;
+    }
+    
+    /**
+     * get a descriptions what to do if checkpoint fails
+     * 
+     * @param string $checkpoint_name Name of the checkpoint
+     * 
+     * @return array
+     */
+    public function getHowto($checkpoint_name)
+    {
+        $howto = array();
+        $checkpoint = $this->_checkpoints[$checkpoint_name];
+        if ($checkpoint->isInvisible()
+            and 0 < count($checkpoint->getDependencies())
+        ) {
+            foreach ($checkpoint->getDependencies() as $dependency) {
+                $dependend_checkpoint = $this->_checkpoints[$dependency];
+                if ($dependend_checkpoint->isInvisible()) {
+                    $howto[] = $dependend_checkpoint->getHowto();
+                }
+            }
+        }
+        $howto[] = $checkpoint->getHowto();
+        return $howto;
     }
 }
