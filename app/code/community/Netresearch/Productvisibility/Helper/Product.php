@@ -48,4 +48,73 @@ class Netresearch_Productvisibility_Helper_Product extends Mage_Core_Helper_Abst
             }
         }
     }
+    
+    /**
+     * check if product is up-to-date in price index
+     * 
+     * @param Mage_Catalog_Model_Product $product
+     * 
+     * @return boolean
+     */
+    public function isUpToDateInPriceIndex($product)
+    {
+        /**
+         * @var Zend_Db_Adapter_Pdo_Abstract
+         */
+        $connection = Mage::getModel('core/resource')
+            ->getConnection(Mage_Core_Model_Resource::DEFAULT_READ_RESOURCE);
+        $query = 'select * from catalog_product_index_price'
+            . ' where customer_group_id=0 and website_id=1'
+            . ' and entity_id = ' . $product->getId();
+        $result = $connection->fetchRow($query);
+        if (false == $result) {
+            return false;
+        }
+        if ($product->getTaxClassId() != $result['tax_class_id']) {
+            return false;
+        }
+        if ($product->getPrice() != $result['price']) {
+            return false;
+        }
+        if ($product->getFinalPrice() != $result['final_price']) {
+            return false;
+        }
+        if ($product->getMinimalPrice() != $result['min_price']) {
+            return false;
+        }
+        if ($product->getTierPrice() != $result['tier_price']) {
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+     * check if product is up-to-date in price index
+     * 
+     * @param Mage_Catalog_Model_Product $product
+     * 
+     * @return boolean
+     */
+    public function isUpToDateInStockIndex($product)
+    {
+        /**
+         * @var Zend_Db_Adapter_Pdo_Abstract
+         */
+        $connection = Mage::getModel('core/resource')
+            ->getConnection(Mage_Core_Model_Resource::DEFAULT_READ_RESOURCE);
+        $query = 'select * from cataloginventory_stock_status_idx'
+            . ' where website_id=1 and stock_id=1'
+            . ' and product_id = ' . $product->getId();
+        $result = $connection->fetchRow($query);
+        if (false == $result) {
+            return false;
+        }
+        if ($product->getStockItem()->getQty() != $result['qty']) {
+            return false;
+        }
+        if ($product->isInStock() != $result['stock_status']) {
+            return false;
+        }
+        return true;
+    }
 }
