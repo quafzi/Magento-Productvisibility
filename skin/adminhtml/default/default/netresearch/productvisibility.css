@@ -8,14 +8,14 @@ table.product_visibility_checkpoints tr th {
 }
 
 table.product_visibility_checkpoints tr td.visibility_on {
-    background:     green;
+    background:     url(../images/success_msg_icon.gif) no-repeat;
     color:          transparent;
     width:          20px;
     height:         20px;
 }
 
 table.product_visibility_checkpoints tr td.visibility_off {
-    background:     red;
+    background:     url(../images/error_msg_icon.gif) no-repeat;
     color:          transparent;
     width:          20px;
     height:         20px;
