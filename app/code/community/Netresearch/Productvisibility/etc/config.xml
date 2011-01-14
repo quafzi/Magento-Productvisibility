@@ -59,6 +59,15 @@
                     </productvisibility>
                 </observers>
             </core_block_abstract_prepare_layout_after>
+            <netresearch_product_visibility_checkpoints_load>
+                <observers>
+                    <productvisibility>
+                        <type>singleton</type>
+                        <class>productvisibility/observer</class>
+                        <method>addConfigurableCheckpoints</method>
+                    </productvisibility>
+                </observers>
+            </netresearch_product_visibility_checkpoints_load>
         </events>
     </adminhtml>
 </config>

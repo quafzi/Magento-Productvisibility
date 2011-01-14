@@ -21,13 +21,28 @@ table.product_visibility_checkpoints tr td.visibility_off {
     height:         20px;
 }
 
+table.product_visibility_checkpoints tr td.visibility_unknown {
+    background:     url(../images/warning_msg_icon.gif) no-repeat;
+    color:          transparent;
+    width:          20px;
+    height:         20px;
+}
+
 table.product_visibility_checkpoints tr td.howto {
-    padding-left:   10px;
+    padding-left:   15px;
     font-style:     italic;
 }
 
 table.product_visibility_checkpoints tr td ul {
-    list-style:     disc inside;
+    list-style:     disc none;
+    margin-left:    10px;
+    padding-left:   5px;
+}
+
+table.product_visibility_checkpoints tr td ul li ul {
+    list-style:     circle none;
+    margin-left:    10px;
+    padding-left:   5px;
 }
 
 table.product_visibility_checkpoints tr td.details {

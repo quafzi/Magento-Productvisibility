@@ -18,11 +18,18 @@
     <?php foreach ($this->getCheckpoints() as $checkpoint): ?>
         <tr>
             <th><?php echo $_helper->__($checkpoint->getName()) ?></th>
-            <td class="visibility_<?php echo $checkpoint->isVisible() ? 'on' : 'off' ?>">
+            <?php if ($checkpoint->isUnknown()): ?>
+                <?php $marker_css_class = 'visibility_unknown'; ?>
+            <?php elseif ($checkpoint->isVisible()): ?>
+                <?php $marker_css_class = 'visibility_on'; ?>
+            <?php else: ?>
+                <?php $marker_css_class = 'visibility_off'; ?>
+            <?php endif ?>
+            <td class="<?php echo $marker_css_class ?>">
                 <?php echo $checkpoint->isVisible() ? '+' : '-' ?>
             </td>
             <td class="<?php echo $checkpoint->isVisible() ? 'details' : 'howto' ?>">
-                <?php if ($checkpoint->isinvisible()): ?>
+                <?php if ($checkpoint->isInvisible() or $checkpoint->isUnknown()): ?>
                     <ul>
                         <?php foreach ($this->getHowto($checkpoint->getName()) as $howto): ?>
                             <li><?php echo $_helper->__($howto) ?></li>

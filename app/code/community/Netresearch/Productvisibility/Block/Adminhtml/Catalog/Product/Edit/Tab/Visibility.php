@@ -29,28 +29,13 @@ class Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Vis
     }
     
     /**
-     * add checkpoint for product visibility
+     * get product
      * 
-     * @param string  $name         Name of the checkpoint
-     * @param boolean $visible      Status
-     * @param string  $howto        Explanation how to change this 
-     * @param string  $details      Some details for the user
-     * @param array   $dependencies Array of names of checkpoints this one depends on
-     * 
-     * @return Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Visibility
+     * @return Mage_Catalog_Model_Product
      */
-    public function addCheckpoint($name, $visible, $howto, $details='', $dependencies=array())
+    public function getProduct()
     {
-        $checkpoint = Mage::getModel('productvisibility/checkpoint');
-        $checkpoint
-            ->setName($name)
-            ->setHowto($howto)
-            ->setVisibility($visible)
-            ->setDetails($details)
-            ->setDependencies($dependencies);
-        $this->_checkpoints[$name] = $checkpoint;
-        
-        return $this;
+        return $this->_product;
     }
     
     /**
@@ -60,73 +45,21 @@ class Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Vis
      */
     public function getCheckpoints()
     {
-        $this->_checkpoints = array();
-        $this->addDefaultCheckpoints();
+        $this->_checkpoints = Mage::helper('productvisibility')
+            ->getDefaultCheckpoints($this->_product);
         Mage::dispatchEvent('netresearch_product_visibility_checkpoints_load',
             array('visibility_block'=>$this));
         return $this->_checkpoints;
     }
     
     /**
-     * add default checkpoints of product visibility
+     * add checkpoint
      * 
-     * @return Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Visibility
+     * @param Netresearch_Productvisibility_Model_Checkpoint $checkpoint
      */
-    public function addDefaultCheckpoints()
+    public function addCheckpoint(Netresearch_Productvisibility_Model_Checkpoint $checkpoint)
     {
-        $this->addCheckpoint(
-            'is enabled',
-            1 == $this->_product->getStatus(),
-            'set status to enabled'
-        );
-        $visibility_options = Mage_Catalog_Model_Product_Visibility::getOptionArray();
-        $this->addCheckpoint(
-            'is visible in catalog',
-            $this->_product->isVisibleInSiteVisibility(),
-            'set visibility to "Catalog" or "Catalog/Search"',
-            $visibility_options[$this->_product->getVisibility()]
-        );
-        $websites = Mage::helper('productvisibility/product')
-            ->getWebsites($this->_product);
-        $this->addCheckpoint(
-            'has website',
-            0 < count($websites),
-            'select an active website',
-            Mage::helper('productvisibility/product')
-                ->__('current websites: %s', implode(', ', $websites))
-        );
-        $categories = $this->_product->getAvailableInCategories();
-        $this->addCheckpoint(
-            'has category',
-            count($categories),
-            'select a category'
-        );
-        $this->addCheckpoint(
-            'is in stock',
-            $this->_product->isInStock(),
-            'check inventory'
-        );
-        $this->addCheckpoint(
-            'is up to date in price index',
-            $websites = Mage::helper('productvisibility/product')
-                ->isUpToDateInPriceIndex($this->_product),
-            'rebuild price index',
-            null,
-            array('is visible in catalog')
-        );
-        $this->addCheckpoint(
-            'is up to date in stock index',
-            $websites = Mage::helper('productvisibility/product')
-                ->isUpToDateInStockIndex($this->_product),
-            'rebuild stock index'
-        );
-        $this->addCheckpoint(
-            'is salable',
-            $this->_product->isSalable(),
-            'please check the other problems first'
-        );
-        
-        return $this;
+        $this->_checkpoints[$checkpoint->getName()] = $checkpoint;
     }
     
     /**
