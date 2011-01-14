@@ -19,6 +19,10 @@ class Netresearch_Productvisibility_Model_Observer
         if ($block instanceof Mage_Adminhtml_Block_Catalog_Product_Edit_Tabs) {
             if ($this->_getRequest()->getActionName() == 'edit' || $this->_getRequest()->getParam('type')) {
                 $product = $block->getProduct();
+                /* do not inject tab for default store */
+                if (Mage::app()->getStore(true) == $product->getStore()) {
+                    return;
+                }
                 $visibility_block = $block->getLayout()->createBlock(
                     'productvisibility/adminhtml_catalog_product_edit_tab_visibility',
                     'visibility-content',
