@@ -1,12 +1,38 @@
 <?php
 /**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category  Mage
+ * @package   Mage_Catalog
+ * @author    Thomas Kappel <thomas.kappel@netresearch.de>
+ * @copyright 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
  * Netresearch_Productvisibility
  * 
- * @category   Catalog
- * @package    Netresearch_Productvisibility
- * @author     Thomas Kappel <thomas.kappel@netresearch.de>
- * @copyright  Copyright (c) 2010 Netresearch GmbH & Co.KG <http://www.netresearch.de/>
- * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @category  Catalog
+ * @package   Netresearch_Productvisibility
+ * @author    Thomas Kappel <thomas.kappel@netresearch.de>
+ * @copyright 2011 Netresearch GmbH & Co.KG <http://www.netresearch.de/>
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
 {
@@ -16,7 +42,7 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
      * @param Mage_Catalog_Model_Product $product Product to check
      * @param string                     $prefix  Prefix for checkpoint names
      * 
-     * @return array Array of instances of Netresearch_Productvisibility_Model_Checkpoint
+     * @return array Array of Netresearch_Productvisibility_Model_Checkpoint
      */
     public function getDefaultCheckpoints($product, $prefix='')
     {
@@ -29,12 +55,12 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
             1 == $product->getStatus(),
             'set status to enabled'
         );
-        $visibility_options = Mage_Catalog_Model_Product_Visibility::getOptionArray();
+        $options = Mage_Catalog_Model_Product_Visibility::getOptionArray();
         $checkpoints[$prefix . 'is visible in catalog'] = $this->createCheckpoint(
             $prefix . 'is visible in catalog',
             $product->isVisibleInSiteVisibility(),
             'set visibility to "Catalog" or "Catalog/Search"',
-            $visibility_options[$product->getVisibility()]
+            $options[$product->getVisibility()]
         );
         $websites = Mage::helper('productvisibility/product')
             ->getWebsites($product);

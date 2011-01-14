@@ -1,23 +1,56 @@
-<?php 
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category  Mage
+ * @package   Mage_Catalog
+ * @author    Thomas Kappel <thomas.kappel@netresearch.de>
+ * @copyright 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+
 /**
  * Netresearch_Productvisibility_Model_Observer
  *
- * @category   Netresearch_Productvisibility
- * @package    Netresearch_Productvisibility
- * @author     Thomas Kappel <thomas.kappel@netresearch.de>
+ * @category  Netresearch_Productvisibility
+ * @package   Netresearch_Productvisibility
+ * @author    Thomas Kappel <thomas.kappel@netresearch.de>
+ * @copyright 2011 Netresearch GmbH & Co.KG <http://www.netresearch.de/>
+ * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Netresearch_Productvisibility_Model_Observer
 {
     /**
      * inject visibility tab into product edit page
      * 
-     * @param Varien_Event_Observer $observer
+     * @param Varien_Event_Observer $observer Observer
+     * 
+     * @return void
      */
     public function injectProductEditTab(Varien_Event_Observer $observer)
     {
         $block = $observer->getEvent()->getBlock();
         if ($block instanceof Mage_Adminhtml_Block_Catalog_Product_Edit_Tabs) {
-            if ($this->_getRequest()->getActionName() == 'edit' || $this->_getRequest()->getParam('type')) {
+            if ($this->_getRequest()->getActionName() == 'edit'
+                or $this->_getRequest()->getParam('type')
+            ) {
                 $product = $block->getProduct();
                 /* do not inject tab for default store */
                 if (Mage::app()->getStore(true) == $product->getStore()) {
@@ -29,10 +62,13 @@ class Netresearch_Productvisibility_Model_Observer
                     array('template' => 'netresearch/productvisibility/tab.phtml')
                 );
                 $visibility_block->setProduct($product);
-                $block->addTab('productvisibility', array(
-                    'label'   => 'Visibility Check',
-                    'content' => $visibility_block->toHtml(),
-                ));
+                $block->addTab(
+                    'productvisibility',
+                    array(
+                        'label'   => 'Visibility Check',
+                        'content' => $visibility_block->toHtml(),
+                    )
+                );
             }
         }
     }
@@ -40,7 +76,9 @@ class Netresearch_Productvisibility_Model_Observer
     /**
      * add checkpoints for configurable products
      * 
-     * @param Varien_Event_Observer $observer
+     * @param Varien_Event_Observer $observer Observer
+     * 
+     * @return void
      */
     public function addConfigurableCheckpoints(Varien_Event_Observer $observer)
     {
@@ -59,15 +97,17 @@ class Netresearch_Productvisibility_Model_Observer
                     );
                 }
             }
-            $block->addCheckpoint(Mage::helper('productvisibility')->createCheckpoint(
-                'associated products not visible individually',
-                0 < count($children_links) ? null : true,
-                sprintf(
-                    'there are visible associated products: <ul><li>%s</li></ul>',
-                    implode('</li><li>', $children_links)
-                ),
-                'there are no visible associated products'
-            ));
+            $block->addCheckpoint(
+                Mage::helper('productvisibility')->createCheckpoint(
+                    'associated products not visible individually',
+                    0 < count($children_links) ? null : true,
+                    sprintf(
+                        'there are visible associated products: <ul><li>%s</li></ul>',
+                        implode('</li><li>', $children_links)
+                    ),
+                    'there are no visible associated products'
+                )
+            );
         }
     }
     
