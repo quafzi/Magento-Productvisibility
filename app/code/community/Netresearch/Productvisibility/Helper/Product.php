@@ -79,7 +79,7 @@ class Netresearch_Productvisibility_Helper_Product extends Mage_Core_Helper_Abst
         if ($product->getFinalPrice() != $result['final_price']) {
             return false;
         }
-        if ($product->getMinimalPrice() != $result['min_price']) {
+        if (!is_null($product->getMinimalPrice()) and $product->getMinimalPrice() != $result['min_price']) {
             return false;
         }
         if ($product->getTierPrice() != $result['tier_price']) {
