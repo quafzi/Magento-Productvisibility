@@ -89,6 +89,7 @@ class Netresearch_Productvisibility_Model_Observer
         if ($block->getProduct()->getTypeId() == Mage_Catalog_Model_Product_Type::TYPE_CONFIGURABLE) {
             $children_links = array();
             foreach ($block->getProduct()->getTypeInstance()->getUsedProducts(null, $block->getProduct()) as $id => $child) {
+                $child->setStoreId($block->getProduct()->getStoreId());
                 if (Mage::helper('catalog/product')->canShow($child)) {
                     $children_links[$id] = sprintf(
                         '<a href="%s" onclick="window.open(this.href);return false;">%s</a>',
