@@ -54,21 +54,28 @@ class Netresearch_Productvisibility_Model_Observer
                 $product = $block->getProduct();
                 /* do not inject tab for default store */
                 if (Mage::app()->getStore(true) == $product->getStore()) {
-                    return;
+                    $block->addTab(
+                        'productvisibility',
+                        array(
+                            'label'   => Mage::helper('productvisibility')->__('Visibility Check'),
+                            'content' => Mage::helper('productvisibility')->__('Please choose a store view to run visibility checks!'),
+                        )
+                    );
+                } else {
+                    $visibility_block = $block->getLayout()->createBlock(
+                        'productvisibility/adminhtml_catalog_product_edit_tab_visibility',
+                        'visibility-content',
+                        array('template' => 'netresearch/productvisibility/tab.phtml')
+                    );
+                    $visibility_block->setProduct($product);
+                    $block->addTab(
+                        'productvisibility',
+                        array(
+                            'label'   => Mage::helper('productvisibility')->__('Visibility Check'),
+                            'content' => $visibility_block->toHtml(),
+                        )
+                    );
                 }
-                $visibility_block = $block->getLayout()->createBlock(
-                    'productvisibility/adminhtml_catalog_product_edit_tab_visibility',
-                    'visibility-content',
-                    array('template' => 'netresearch/productvisibility/tab.phtml')
-                );
-                $visibility_block->setProduct($product);
-                $block->addTab(
-                    'productvisibility',
-                    array(
-                        'label'   => 'Visibility Check',
-                        'content' => $visibility_block->toHtml(),
-                    )
-                );
             }
         }
     }
