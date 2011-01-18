@@ -95,7 +95,9 @@ class Netresearch_Productvisibility_Model_Observer
         $block = $observer->getEvent()->getVisibilityBlock();
         if ($block->getProduct()->getTypeId() == Mage_Catalog_Model_Product_Type::TYPE_CONFIGURABLE) {
             $children_links = array();
-            foreach ($block->getProduct()->getTypeInstance()->getUsedProducts(null, $block->getProduct()) as $id => $child) {
+            $children = $block->getProduct()->getTypeInstance()
+                ->getUsedProducts(null, $block->getProduct());
+            foreach ($children as $id => $child) {
                 $child->setStoreId($block->getProduct()->getStoreId());
                 if (Mage::helper('catalog/product')->canShow($child)) {
                     $children_links[$id] = sprintf(
