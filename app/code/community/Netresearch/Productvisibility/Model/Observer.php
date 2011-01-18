@@ -110,10 +110,13 @@ class Netresearch_Productvisibility_Model_Observer
                     'associated products not visible individually',
                     0 < count($children_links) ? null : true,
                     sprintf(
-                        'there are visible associated products: <ul><li>%s</li></ul>',
+                        Mage::helper('productvisibility')
+                            ->__('there are visible associated products:')
+                        . '<ul><li>%s</li></ul>',
                         implode('</li><li>', $children_links)
                     ),
-                    'there are no visible associated products'
+                    Mage::helper('productvisibility')
+                        ->__('there are no visible associated products')
                 )
             );
         }
