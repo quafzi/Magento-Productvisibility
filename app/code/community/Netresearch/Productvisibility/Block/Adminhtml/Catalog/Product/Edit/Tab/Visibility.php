@@ -76,12 +76,21 @@ class Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Vis
      */
     public function getCheckpoints()
     {
-        $this->_checkpoints = Mage::helper('productvisibility')
-            ->getDefaultCheckpoints($this->_product);
-        Mage::dispatchEvent(
-            'netresearch_product_visibility_checkpoints_load',
-            array('visibility_block'=>$this)
-        );
+        if (Mage::helper('productvisibility')->isStoreView($this->_product)) {
+            $this->_checkpoints = Mage::helper('productvisibility')
+                ->getOverviewCheckpoints($this->_product);
+            Mage::dispatchEvent(
+                'netresearch_product_visibility_checkpoints_load_overview',
+                array('visibility_block'=>$this)
+            );
+        } else {
+            $this->_checkpoints = Mage::helper('productvisibility')
+                ->getDefaultCheckpoints($this->_product);
+            Mage::dispatchEvent(
+                'netresearch_product_visibility_checkpoints_load',
+                array('visibility_block'=>$this)
+            );
+        }
         return $this->_checkpoints;
     }
     

@@ -52,30 +52,19 @@ class Netresearch_Productvisibility_Model_Observer
                 or $this->_getRequest()->getParam('type')
             ) {
                 $product = $block->getProduct();
-                /* do not inject tab for default store */
-                if (Mage::app()->getStore(true) == $product->getStore()) {
-                    $block->addTab(
-                        'productvisibility',
-                        array(
-                            'label'   => Mage::helper('productvisibility')->__('Visibility Check'),
-                            'content' => Mage::helper('productvisibility')->__('Please choose a store view to run visibility checks!'),
-                        )
-                    );
-                } else {
-                    $visibility_block = $block->getLayout()->createBlock(
-                        'productvisibility/adminhtml_catalog_product_edit_tab_visibility',
-                        'visibility-content',
-                        array('template' => 'netresearch/productvisibility/tab.phtml')
-                    );
-                    $visibility_block->setProduct($product);
-                    $block->addTab(
-                        'productvisibility',
-                        array(
-                            'label'   => Mage::helper('productvisibility')->__('Visibility Check'),
-                            'content' => $visibility_block->toHtml(),
-                        )
-                    );
-                }
+                $visibility_block = $block->getLayout()->createBlock(
+                    'productvisibility/adminhtml_catalog_product_edit_tab_visibility',
+                    'visibility-content',
+                    array('template' => 'netresearch/productvisibility/tab.phtml')
+                );
+                $visibility_block->setProduct($product);
+                $block->addTab(
+                    'productvisibility',
+                    array(
+                        'label'   => Mage::helper('productvisibility')->__('Visibility Check'),
+                        'content' => $visibility_block->toHtml(),
+                    )
+                );
             }
         }
     }
