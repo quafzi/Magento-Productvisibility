@@ -37,6 +37,18 @@
 class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
 {
     /**
+     * if we're watching store view dependend product data
+     * 
+     * @param Mage_Catalog_Model_Product $product Product to check
+     * 
+     * @return boolean
+     */
+    public function isStoreView($product)
+    {
+        return Mage::app()->getStore(true) == $product->getStore();
+    }
+    
+    /**
      * add default checkpoints of product visibility
      * 
      * @param Mage_Catalog_Model_Product $product Product to check
@@ -81,7 +93,7 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
     {
         return $this->createCheckpoint(
             $prefix . 'is enabled',
-            1 == $product->getStatus(),
+            Mage::helper('productvisibility/product')->isEnabled($product),
             'set status to enabled'
         );
     }
@@ -227,6 +239,39 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
                 $product->getProductUrl()
             )
         );
+    }
+    
+    /**
+     * add overview checkpoints of product visibility
+     * 
+     * @param Mage_Catalog_Model_Product $product Product to check
+     * 
+     * @return array Array of Netresearch_Productvisibility_Model_Checkpoint
+     */
+    public function getOverviewCheckpoints($product)
+    {
+        $checkpoints = array();
+        foreach (Mage::app()->getWebsites() as $website) {
+            foreach ($website->getStores() as $store) {
+                $store_product = $product->setStoreId($store->getId())->load($product->getId());
+                $has_website = in_array(
+                    $store_product->getStore()->getWebsite()->getId(),
+                    $store_product->getWebsiteIds()
+                );
+                $visible_in_store = Mage::helper('catalog/product')->canShow($store_product)
+                    and Mage::helper('productvisibility/product')->isEnabled($store_product)
+                    and $has_website;
+                $name = $website->getName() . ' - ' . $store->getName();
+                $checkpoints[$name] = $this->createCheckpoint(
+                    $name,
+                    $visible_in_store,
+                    Mage::helper('productvisibility')
+                        ->__('select store view "%s" to view details', $name)
+                );
+            }
+        }
+        
+        return $checkpoints;
     }
     
     /**

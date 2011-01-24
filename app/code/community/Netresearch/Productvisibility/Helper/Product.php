@@ -145,4 +145,16 @@ class Netresearch_Productvisibility_Helper_Product extends Mage_Core_Helper_Abst
         }
         return true;
     }
+    
+    /**
+     * check if product is enabled
+     * 
+     * @param Mage_Catalog_Model_Product $product Product to check status of
+     * 
+     * @return boolean
+     */
+    public function isEnabled($product)
+    {
+        return Mage_Catalog_Model_Product_Status::STATUS_ENABLED == $product->getStatus();
+    }
 }
