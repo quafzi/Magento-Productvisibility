@@ -50,39 +50,129 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
             $prefix .= ' ';
         }
         $checkpoints = array();
-        $checkpoints[$prefix . 'is enabled'] = $this->createCheckpoint(
+        $checkpoints[$prefix . 'is enabled'] = 
+            $this->getIsEnabledCheckpoint($product, $prefix);
+        $checkpoints[$prefix . 'is visible in catalog'] =  
+            $this->getIsVisibleInCatalogCheckpoint($product, $prefix); 
+        $checkpoints[$prefix . 'has website'] =
+            $this->getHasWebsiteCheckpoint($product, $prefix); 
+        $checkpoints[$prefix . 'has category'] =
+            $this->getHasCategoryCheckpoint($product, $prefix); 
+        $checkpoints[$prefix . 'is in stock'] = 
+            $this->getIsInStockCheckpoint($product, $prefix);
+        $checkpoints[$prefix . 'is up to date in price index'] = 
+            $this->getIsUpToDateInPriceIndexCheckpoint($product, $prefix);
+        $checkpoints[$prefix . 'is up to date in stock index'] = 
+            $this->getIsUpToDateInStockIndexCheckpoint($product, $prefix);
+        $checkpoints[$prefix . 'should be visible'] = 
+            $this->getShouldBeVisibleCheckpoint($product, $prefix);
+        return $checkpoints;
+    }
+    
+    /**
+     * Creates checkpoint to check if product is available or not
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param string $prefix
+     * 
+     * @return Netresearch_Productvisibility_Model_Checkpoint
+     */
+    protected function getIsEnabledCheckpoint($product, $prefix='')
+    {
+        return $this->createCheckpoint(
             $prefix . 'is enabled',
             1 == $product->getStatus(),
             'set status to enabled'
         );
+    }
+
+    /**
+     * Creates checkpoint to check if product is visible or not
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param string $prefix
+     * 
+     * @return Netresearch_Productvisibility_Model_Checkpoint
+     */
+    protected function getIsVisibleInCatalogCheckpoint($product, $prefix='') 
+    {
         $options = Mage_Catalog_Model_Product_Visibility::getOptionArray();
-        $checkpoints[$prefix . 'is visible in catalog'] = $this->createCheckpoint(
+        return $this->createCheckpoint(
             $prefix . 'is visible in catalog',
             $product->isVisibleInSiteVisibility(),
             'set visibility to "Catalog" or "Catalog/Search"',
             $options[$product->getVisibility()]
         );
+    }
+
+    /**
+     * Creates checkpoint to check if product is enabled for any website
+     * It also shows for which website the product is enabled 
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param string $prefix
+     * 
+     * @return Netresearch_Productvisibility_Model_Checkpoint
+     */
+    protected function getHasWebsiteCheckpoint($product, $prefix='')
+    {
         $websites = Mage::helper('productvisibility/product')
             ->getWebsites($product);
-        $checkpoints[$prefix . 'has website'] = $this->createCheckpoint(
+        return $this->createCheckpoint(
             $prefix . 'has website',
             0 < count($websites),
             'select an active website',
             Mage::helper('productvisibility/product')
                 ->__('current websites: %s', implode(', ', $websites))
         );
-        $categories = $product->getAvailableInCategories();
-        $checkpoints[$prefix . 'has category'] = $this->createCheckpoint(
+    }
+
+    /**
+     * Creates checkpoint to check if product is added to any category
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param string $prefix
+     * 
+     * @return Netresearch_Productvisibility_Model_Checkpoint
+     */
+    protected function getHasCategoryCheckpoint($product, $prefix='') 
+    {
+        $categories = $product->getAvailableInCategories(); 
+        return $this->createCheckpoint(
             $prefix . 'has category',
             count($categories),
             'select a category'
         );
-        $checkpoints[$prefix . 'is in stock'] = $this->createCheckpoint(
+    }
+    
+    /**
+     * Creates checkpoint to check if product is in stock
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param string $prefix
+     * 
+     * @return Netresearch_Productvisibility_Model_Checkpoint
+     */
+    protected function getIsInStockCheckpoint($product, $prefix='')
+    {
+        return $this->createCheckpoint(
             $prefix . 'is in stock',
             $product->isInStock(),
             'check inventory'
         );
-        $checkpoints[$prefix . 'is up to date in price index'] = $this->createCheckpoint(
+    }
+
+    /**
+     * Creates checkpoint to check if product is up to date in price index
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param string $prefix
+     * 
+     * @return Netresearch_Productvisibility_Model_Checkpoint
+     */
+    protected function getIsUpToDateInPriceIndexCheckpoint($product, $prefix='') 
+    {
+        return $this->createCheckpoint(
             $prefix . 'is up to date in price index',
             $websites = Mage::helper('productvisibility/product')
                 ->isUpToDateInPriceIndex($product),
@@ -90,7 +180,19 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
             null,
             array($prefix . 'is visible in catalog')
         );
-        $checkpoints[$prefix . 'is up to date in stock index'] = $this->createCheckpoint(
+    }    
+
+    /**
+     * Creates checkpoint to check if product is up to date in stock index
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param string $prefix
+     * 
+     * @return Netresearch_Productvisibility_Model_Checkpoint
+     */
+    protected function getIsUpToDateInStockIndexCheckpoint($product, $prefix='')
+    {
+        return $this->createCheckpoint(
             $prefix . 'is up to date in stock index',
             $websites = Mage::helper('productvisibility/product')
                 ->isUpToDateInStockIndex($product),
@@ -98,9 +200,21 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
             null,
             array($prefix . 'is in stock')
         );
+    }
+
+    /**
+     * Creates checkpoint to check if product should be visible in frontend
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param string $prefix
+     * 
+     * @return Netresearch_Productvisibility_Model_Checkpoint
+     */
+    protected function getShouldBeVisibleCheckpoint($product, $prefix='')
+    {
         $visible = Mage::helper('catalog/product')->canShow($product)
             and in_array($product->getStore()->getWebsite()->getId(), $product->getWebsiteIds());
-        $checkpoints[$prefix . 'should be visible'] = $this->createCheckpoint(
+        return $this->createCheckpoint(
             $prefix . 'should be visible',
             $visible,
             'check the other issues first',
@@ -110,8 +224,6 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
                 $product->getProductUrl()
             )
         );
-        
-        return $checkpoints;
     }
     
     /**
@@ -127,8 +239,7 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
      */
     public function createCheckpoint($name, $visible, $howto, $details='', $dependencies=array())
     {
-        $checkpoint = Mage::getModel('productvisibility/checkpoint');
-        $checkpoint
+        $checkpoint = Mage::getModel('productvisibility/checkpoint')
             ->setName($name)
             ->setHowto($howto)
             ->setVisibility($visible)
