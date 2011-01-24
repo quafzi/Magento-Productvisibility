@@ -151,7 +151,7 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
     {
         $categories = array_diff(
             $product->getAvailableInCategories(), 
-            array($product->getStore()->getRootCategoryId()
+            array($product->getStore()->getRootCategoryId())
         );
         return $this->createCheckpoint(
             $prefix . 'has category',
