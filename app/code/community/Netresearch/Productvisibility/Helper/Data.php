@@ -156,7 +156,9 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
         return $this->createCheckpoint(
             $prefix . 'has category',
             count($categories),
-            'select a category'
+            'select a category',
+            null,
+            array($prefix . 'has website')
         );
     }
     

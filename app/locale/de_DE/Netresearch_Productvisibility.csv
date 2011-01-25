@@ -21,3 +21,7 @@
 "select a category","eine Kategorie auswählen"
 "current websites: %s","aktuelle Websites: %s"
 "select store view ""%s"" to view details","Für Details bitte StoreView ""%s"" auswählen."
+"is_enabled","aktiviert"
+"is_enabled_howto","Aktivieren Sie das Produkt!"
+"is_salable","aktiviert"
+"is_salable_howto","Beachten Sie die weiteren Ursachen. Wenden Sie sich an Netresearch, wenn keine weiteren Ursachen angezeigt werden."
