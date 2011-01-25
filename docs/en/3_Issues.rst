@@ -17,5 +17,5 @@ product visibility, for example:
 - compiler
 
 In the past, we did not need these features to be handled by this module, that's
-just why we did not already implement this. You could either implement it your
-own (and send us your solution) or just be patient and hope we do betimes.
+just why we did not already implement this. You could either implement it on your
+own (and send us your solution) or just be patient and hope we do it betimes.

@@ -15,9 +15,9 @@ For configurable products a warning will be shown additionally, if its simple
 products are visible individually.
 
 If a checkpoint fails, there will be a howto which gives you a hint.
-For some checkpoint there will also be a description where to find the product
+For some checkpoints there will be also a description where to find the product
 in the shop (categories, websites).
 
-These checkpoints are only visible after you selected a store view. Otherwise
+These checkpoints are exclusively visible after you selected a store view. Otherwise
 there will appear a list of store views with the information where the product
 should be visible.
