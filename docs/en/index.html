@@ -378,9 +378,9 @@ be done to improve it.</p>
 <p>For configurable products a warning will be shown additionally, if its simple
 products are visible individually.</p>
 <p>If a checkpoint fails, there will be a howto which gives you a hint.
-For some checkpoint there will also be a description where to find the product
+For some checkpoints there will be also a description where to find the product
 in the shop (categories, websites).</p>
-<p>These checkpoints are only visible after you selected a store view. Otherwise
+<p>These checkpoints are exclusively visible after you selected a store view. Otherwise
 there will appear a list of store views with the information where the product
 should be visible.</p>
 </div>
@@ -395,15 +395,17 @@ explicitly handle</p>
 <p>Also some magento features are not handled, that could have influences on
 product visibility, for example:</p>
 <ul class="simple">
+<li>flat catalog</li>
 <li>catalog events (enterprise feature)</li>
 <li>catalog permissions (enterprise feature)</li>
 <li>customer segments (enterprise feature)</li>
-<li>some indexes</li>
+<li>some indexes (search, ...)</li>
 <li>compiler</li>
+<li>find modules catching events <tt class="docutils literal"><span class="pre">catalog_product_is_salable_before</span></tt> and <tt class="docutils literal"><span class="pre">catalog_product_is_salable_after</span></tt></li>
 </ul>
 <p>In the past, we did not need these features to be handled by this module, that's
-just why we did not already implement this. You could either implement it your
-own (and send us your solution) or just be patient and hope we do betimes.</p>
+just why we did not already implement this. You could either implement it on your
+own (and send us your solution) or just be patient and hope we do it betimes.</p>
 </div>
 <div class="section" id="extensibility">
 <h1><a class="toc-backref" href="#id4">4&nbsp;&nbsp;&nbsp;Extensibility</a></h1>
@@ -477,12 +479,15 @@ name of the existing checkpoint.</p>
 <div class="section" id="system-requirements">
 <h1><a class="toc-backref" href="#id5">5&nbsp;&nbsp;&nbsp;System Requirements</a></h1>
 <p>Netresearch_Productvisibility has been developed in Magento Enterprise, starting
-with version 1.7, but it should work for Community versions, too.</p>
+with version 1.7, but it should work for the Community Editions too.</p>
 </div>
 <div class="section" id="contributor">
 <h1><a class="toc-backref" href="#id6">6&nbsp;&nbsp;&nbsp;Contributor</a></h1>
 <p>Netresearch_Productvisibility has been developed by <a class="reference external" href="mailto:thomas.kappel&#64;netresearch.de">Thomas Kappel</a> at
 <a class="reference external" href="http://www.netresearch.de">Netresearch</a>.</p>
+<p>Netresearch is an experienced and successful provider of ecommerce solutions.
+Netresearch is a specialist in Magento, Zend Framework and TYPO3 and works on
+behalf of leading agencies.</p>
 <p>Netresearch has been Magento Enterprise Partner for several years. Now we focus
 on Magento marketing and event initiatives in Europe as well as providing
 Magento professional services and enabling solution and industry partners.</p>
