@@ -5,8 +5,8 @@
         </reference>
         <reference name="product_tabs">
             <action method="addTab">
-                <name>super</name>
-                <block>adminhtml/catalog_product_edit_tab_super_group</block>
+                <name>visibility-content</name>
+                <block>productvisibility/adminhtml_catalog_product_edit_tab_visibility</block>
             </action>
         </reference>
     </adminhtml_catalog_product_edit>
