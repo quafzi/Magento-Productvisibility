@@ -134,8 +134,10 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
             $prefix . 'has website',
             0 < count($websites),
             'select an active website',
-            Mage::helper('productvisibility/product')
-                ->__('current websites: %s', implode(', ', $websites))
+            Mage::helper('productvisibility/product')->__(
+                'current websites: %s',
+                implode(', ', $websites)
+            )
         );
     }
 
@@ -191,8 +193,9 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
     {
         return $this->createCheckpoint(
             $prefix . 'is up to date in price index',
-            $websites = Mage::helper('productvisibility/product')
-                ->isUpToDateInPriceIndex($product),
+            Mage::helper('productvisibility/product')->isUpToDateInPriceIndex(
+                $product
+            ),
             'rebuild price index',
             null,
             array($prefix . 'is visible in catalog')
@@ -211,8 +214,9 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
     {
         return $this->createCheckpoint(
             $prefix . 'is up to date in stock index',
-            $websites = Mage::helper('productvisibility/product')
-                ->isUpToDateInStockIndex($product),
+            Mage::helper('productvisibility/product')->isUpToDateInStockIndex(
+                $product
+            ),
             'rebuild stock index',
             null,
             array($prefix . 'is in stock')
@@ -288,7 +292,9 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
      * 
      * @return Netresearch_Productvisibility_Model_Checkpoint
      */
-    public function createCheckpoint($name, $visible, $howto, $details='', $dependencies=array())
+    public function createCheckpoint($name, $visible, $howto, $details='',
+        $dependencies=array()
+    )
     {
         $checkpoint = Mage::getModel('productvisibility/checkpoint')
             ->setName($name)
