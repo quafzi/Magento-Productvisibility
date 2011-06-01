@@ -35,7 +35,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 class Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Visibility
-    extends Mage_Adminhtml_Block_Widget
+    extends Mage_Adminhtml_Block_Widget implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
     /**
      * @var Mage_Catalog_Model_Product
@@ -46,6 +46,33 @@ class Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Vis
      * @var array
      */
     protected $_checkpoints;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setTemplate('netresearch/productvisibility/tab.phtml');
+        $this->setProduct(Mage::registry('product'));
+    }
+
+    public function getTabLabel()
+    {
+        return Mage::helper('productvisibility')->__('Visibility Check');
+    }
+
+    public function getTabTitle()
+    {
+        return Mage::helper('productvisibility')->__('Visibility Check');
+    }
+
+    public function canShowTab()
+    {
+        return true;
+    }
+    
+    public function isHidden()
+    {
+        return false;
+    }
     
     /**
      * set product

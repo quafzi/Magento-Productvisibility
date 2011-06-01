@@ -50,15 +50,6 @@
             </modules>
         </translate>
         <events>
-            <core_block_abstract_prepare_layout_after>
-                <observers>
-                    <productvisibility>
-                        <type>singleton</type>
-                        <class>productvisibility/observer</class>
-                        <method>injectProductEditTab</method>
-                    </productvisibility>
-                </observers>
-            </core_block_abstract_prepare_layout_after>
             <netresearch_product_visibility_checkpoints_load>
                 <observers>
                     <productvisibility>
