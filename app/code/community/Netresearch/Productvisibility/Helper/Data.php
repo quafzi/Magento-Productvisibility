@@ -255,20 +255,21 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
         $checkpoints = array();
         foreach (Mage::app()->getWebsites() as $website) {
             foreach ($website->getStores() as $store) {
-                $store_product = $product->setStoreId($store->getId())->load($product->getId());
-                $has_website = in_array(
-                    $store_product->getStore()->getWebsite()->getId(),
-                    $store_product->getWebsiteIds()
+                $storeProduct = $product->setStoreId($store->getId())->load($product->getId());
+                $hasWebsite = in_array(
+                    $storeProduct->getStore()->getWebsite()->getId(),
+                    $storeProduct->getWebsiteIds()
                 );
-                $visible_in_store = Mage::helper('catalog/product')->canShow($store_product)
-                    and Mage::helper('productvisibility/product')->isEnabled($store_product)
-                    and $has_website;
+                $visibleInStore = Mage::helper('catalog/product')->canShow($storeProduct)
+                    && Mage::helper('productvisibility/product')->isEnabled($storeProduct)
+                    && $hasWebsite;
                 $name = $website->getName() . ' - ' . $store->getName();
                 $checkpoints[$name] = $this->createCheckpoint(
                     $name,
-                    $visible_in_store,
-                    Mage::helper('productvisibility')
-                        ->__('select store view "%s" to view details', $name)
+                    $visibleInStore,
+                    Mage::helper('productvisibility')->__(
+                        'select store view "%s" to view details', $name
+                    )
                 );
             }
         }

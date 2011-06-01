@@ -50,17 +50,17 @@ class Netresearch_Productvisibility_Model_Observer
         if ($block instanceof Mage_Adminhtml_Block_Catalog_Product_Edit_Tabs) {
             if ($this->_getRequest()->getActionName() == 'edit') {
                 $product = $block->getProduct();
-                $visibility_block = $block->getLayout()->createBlock(
+                $visibilityBlock = $block->getLayout()->createBlock(
                     'productvisibility/adminhtml_catalog_product_edit_tab_visibility',
                     'visibility-content',
                     array('template' => 'netresearch/productvisibility/tab.phtml')
                 );
-                $visibility_block->setProduct($product);
+                $visibilityBlock->setProduct($product);
                 $block->addTab(
                     'productvisibility',
                     array(
                         'label'   => Mage::helper('productvisibility')->__('Visibility Check'),
-                        'content' => $visibility_block->toHtml(),
+                        'content' => $visibilityBlock->toHtml(),
                     )
                 );
             }
@@ -81,13 +81,13 @@ class Netresearch_Productvisibility_Model_Observer
          */
         $block = $observer->getEvent()->getVisibilityBlock();
         if ($block->getProduct()->getTypeId() == Mage_Catalog_Model_Product_Type::TYPE_CONFIGURABLE) {
-            $children_links = array();
+            $childrenLinks = array();
             $children = $block->getProduct()->getTypeInstance()
                 ->getUsedProducts(null, $block->getProduct());
             foreach ($children as $id => $child) {
                 $child->setStoreId($block->getProduct()->getStoreId());
                 if (Mage::helper('catalog/product')->canShow($child)) {
-                    $children_links[$id] = sprintf(
+                    $childrenLinks[$id] = sprintf(
                         '<a href="%s" onclick="window.open(this.href);return false;">%s</a>',
                         $child->getProductUrl(),
                         $child->getProductUrl()
@@ -97,12 +97,12 @@ class Netresearch_Productvisibility_Model_Observer
             $block->addCheckpoint(
                 Mage::helper('productvisibility')->createCheckpoint(
                     'associated products not visible individually',
-                    0 < count($children_links) ? null : true,
+                    0 < count($childrenLinks) ? null : true,
                     sprintf(
                         Mage::helper('productvisibility')
                             ->__('there are visible associated products:')
                         . '<ul><li>%s</li></ul>',
-                        implode('</li><li>', $children_links)
+                        implode('</li><li>', $childrenLinks)
                     ),
                     Mage::helper('productvisibility')
                         ->__('there are no visible associated products')

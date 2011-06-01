@@ -103,28 +103,29 @@ class Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Vis
      */
     public function addCheckpoint(
         Netresearch_Productvisibility_Model_Checkpoint $checkpoint
-    ) {
+    )
+    {
         $this->_checkpoints[$checkpoint->getName()] = $checkpoint;
     }
     
     /**
      * get a descriptions what to do if checkpoint fails
      * 
-     * @param string $checkpoint_name Name of the checkpoint
+     * @param string $checkpointName Name of the checkpoint
      * 
      * @return array
      */
-    public function getHowto($checkpoint_name)
+    public function getHowto($checkpointName)
     {
         $howto = array();
-        $checkpoint = $this->_checkpoints[$checkpoint_name];
+        $checkpoint = $this->_checkpoints[$checkpointName];
         if ($checkpoint->isInvisible()
             and 0 < count($checkpoint->getDependencies())
         ) {
             foreach ($checkpoint->getDependencies() as $dependency) {
-                $dependend_checkpoint = $this->_checkpoints[$dependency];
-                if ($dependend_checkpoint->isInvisible()) {
-                    $howto[] = $dependend_checkpoint->getHowto();
+                $dependendCheckpoint = $this->_checkpoints[$dependency];
+                if ($dependendCheckpoint->isInvisible()) {
+                    $howto[] = $dependendCheckpoint->getHowto();
                 }
             }
         }
