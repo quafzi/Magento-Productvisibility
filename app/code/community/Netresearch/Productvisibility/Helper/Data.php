@@ -108,7 +108,7 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
      */
     protected function getIsVisibleInCatalogCheckpoint($product, $prefix='') 
     {
-        $options = Mage_Catalog_Model_Product_Visibility::getOptionArray();
+        $options =  Mage::getSingleton('catalog/product_visibility')->getOptionArray();
         return $this->createCheckpoint(
             $prefix . 'is visible in catalog',
             $product->isVisibleInSiteVisibility(),
