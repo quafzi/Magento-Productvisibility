@@ -58,10 +58,10 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
      */
     public function getDefaultCheckpoints($product, $prefix='')
     {
+        $checkpoints = array();
         if (strlen($prefix) and substr($prefix, -1) != ' ') {
             $prefix .= ' ';
         }
-        $checkpoints = array();
         $checkpoints[$prefix . 'is enabled'] = 
             $this->getIsEnabledCheckpoint($product, $prefix);
         $checkpoints[$prefix . 'is visible in catalog'] =  
