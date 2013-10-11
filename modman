@@ -1,0 +1,7 @@
+app/etc/modules/Netresearch_Productvisibility.xml	app/etc/modules/Netresearch_Productvisibility.xml
+app/code/community/Netresearch/Productvisibility	app/code/community/Netresearch/Productvisibility/
+app/design/adminhtml/default/default/layout/netresearch/productvisibility.xml	app/design/adminhtml/default/default/layout/netresearch/productvisibility.xml
+app/design/adminhtml/default/default/template/netresearch/productvisibility		app/design/adminhtml/default/default/template/netresearch/productvisibility
+app/locale/de_DE/Netresearch_Productvisibility.csv	app/locale/de_DE/Netresearch_Productvisibility.csv
+app/locale/en_US/Netresearch_Productvisibility.csv	app/locale/en_US/Netresearch_Productvisibility.csv
+skin/adminhtml/default/default/netresearch/productvisibility.css	skin/adminhtml/default/default/netresearch/productvisibility.css
