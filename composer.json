@@ -1,0 +1,21 @@
+{
+    "name": "quafzi/product-visibility",
+    "type": "magento-module",
+    "description": "This extension shows, why a product is visible for customers - or why not.",
+    "authors": [
+        {
+            "name": "Thomas Birke",
+            "email": "tbirke@netextreme.de"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.firegento.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "dev-master"
+    }
+}
