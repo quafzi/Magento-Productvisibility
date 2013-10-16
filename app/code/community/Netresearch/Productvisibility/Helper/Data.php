@@ -72,11 +72,10 @@ class Netresearch_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstrac
             $this->getHasCategoryCheckpoint($product, $prefix); 
         $checkpoints[$prefix . 'is in stock'] = 
             $this->getIsInStockCheckpoint($product, $prefix);
-        // we can't determine if index is up to date in different Magento versions...
-        // $checkpoints[$prefix . 'is up to date in price index'] = 
-        //    $this->getIsUpToDateInPriceIndexCheckpoint($product, $prefix);
-        // $checkpoints[$prefix . 'is up to date in stock index'] = 
-        //    $this->getIsUpToDateInStockIndexCheckpoint($product, $prefix);
+        $checkpoints[$prefix . 'is up to date in price index'] =
+            $this->getIsUpToDateInPriceIndexCheckpoint($product, $prefix);
+        $checkpoints[$prefix . 'is up to date in stock index'] =
+            $this->getIsUpToDateInStockIndexCheckpoint($product, $prefix);
         $checkpoints[$prefix . 'should be visible'] = 
             $this->getShouldBeVisibleCheckpoint($product, $prefix);
         return $checkpoints;

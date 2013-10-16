@@ -91,7 +91,7 @@ class Netresearch_Productvisibility_Helper_Product extends Mage_Core_Helper_Abst
             ->getConnection(Mage_Core_Model_Resource::DEFAULT_READ_RESOURCE);
         $select = $connection
             ->select()
-            ->from(Mage::getResourceModel('catalog/product_indexer_price')->getIdxTable())
+            ->from(Mage::getSingleton('core/resource')->getTableName('catalog/product_index_price'))
             ->where('customer_group_id = ?', 0)
             ->where('entity_id = ?', $product->getId());
 
@@ -135,7 +135,7 @@ class Netresearch_Productvisibility_Helper_Product extends Mage_Core_Helper_Abst
             ->getConnection(Mage_Core_Model_Resource::DEFAULT_READ_RESOURCE);
         $select = $connection
             ->select()
-            ->from(Mage::getResourceModel('cataloginventory/indexer_stock')->getIdxTable())
+            ->from(Mage::getSingleton('core/resource')->getTableName('cataloginventory/stock_status'))
             ->where('product_id = ?', $product->getId());
 
         $results = $connection->query($select)->fetchAll();
