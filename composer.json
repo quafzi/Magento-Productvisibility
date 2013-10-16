@@ -1,0 +1,13 @@
+{
+  "name": "quafzi/Magento-Productvisibility",
+  "type": "magento-module",
+  "description": "Shows Information about Product visibility in magento",
+  "homepage":"https://github.com/nhp/Magento-Productvisibility",
+  "require": {
+    "magento-hackathon/magento-composer-installer": "*"
+  }, 
+  "authors":[
+    {"name": "quafzi"
+    }
+  ]
+}
