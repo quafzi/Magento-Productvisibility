@@ -26,13 +26,13 @@ class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return Mage::app()->getStore(true) == $product->getStore();
     }
-    
+
     /**
      * add default checkpoints of product visibility
-     * 
+     *
      * @param Mage_Catalog_Model_Product $product Product to check
      * @param string                     $prefix  Prefix for checkpoint names
-     * 
+     *
      * @return array Array of Quafzi_Productvisibility_Model_Checkpoint
      */
     public function getDefaultCheckpoints($product, $prefix='')
@@ -59,13 +59,13 @@ class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
             $this->getShouldBeVisibleCheckpoint($product, $prefix);
         return $checkpoints;
     }
-    
+
     /**
      * Creates checkpoint to check if product is available or not
      *
      * @param Mage_Catalog_Model_Product $product
      * @param string $prefix
-     * 
+     *
      * @return Quafzi_Productvisibility_Model_Checkpoint
      */
     protected function getIsEnabledCheckpoint($product, $prefix='')
@@ -82,7 +82,7 @@ class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
      *
      * @param Mage_Catalog_Model_Product $product
      * @param string $prefix
-     * 
+     *
      * @return Quafzi_Productvisibility_Model_Checkpoint
      */
     protected function getIsVisibleInCatalogCheckpoint($product, $prefix='') 
@@ -102,7 +102,7 @@ class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
      *
      * @param Mage_Catalog_Model_Product $product
      * @param string $prefix
-     * 
+     *
      * @return Quafzi_Productvisibility_Model_Checkpoint
      */
     protected function getHasWebsiteCheckpoint($product, $prefix='')
@@ -125,7 +125,7 @@ class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
      *
      * @param Mage_Catalog_Model_Product $product
      * @param string $prefix
-     * 
+     *
      * @return Quafzi_Productvisibility_Model_Checkpoint
      */
     protected function getHasCategoryCheckpoint($product, $prefix='') 
@@ -142,13 +142,13 @@ class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
             array($prefix . 'has website')
         );
     }
-    
+
     /**
      * Creates checkpoint to check if product is in stock
      *
      * @param Mage_Catalog_Model_Product $product
      * @param string $prefix
-     * 
+     *
      * @return Quafzi_Productvisibility_Model_Checkpoint
      */
     protected function getIsInStockCheckpoint($product, $prefix='')
@@ -165,7 +165,7 @@ class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
      *
      * @param Mage_Catalog_Model_Product $product
      * @param string $prefix
-     * 
+     *
      * @return Quafzi_Productvisibility_Model_Checkpoint
      */
     protected function getIsUpToDateInPriceIndexCheckpoint($product, $prefix='') 
@@ -179,14 +179,14 @@ class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
             null,
             array($prefix . 'is visible in catalog')
         );
-    }    
+    }
 
     /**
      * Creates checkpoint to check if product is up to date in stock index
      *
      * @param Mage_Catalog_Model_Product $product
      * @param string $prefix
-     * 
+     *
      * @return Quafzi_Productvisibility_Model_Checkpoint
      */
     protected function getIsUpToDateInStockIndexCheckpoint($product, $prefix='')
@@ -207,7 +207,7 @@ class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
      *
      * @param Mage_Catalog_Model_Product $product
      * @param string $prefix
-     * 
+     *
      * @return Quafzi_Productvisibility_Model_Checkpoint
      */
     protected function getShouldBeVisibleCheckpoint($product, $prefix='')
@@ -225,12 +225,12 @@ class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
             )
         );
     }
-    
+
     /**
      * add overview checkpoints of product visibility
-     * 
+     *
      * @param Mage_Catalog_Model_Product $product Product to check
-     * 
+     *
      * @return array Array of Quafzi_Productvisibility_Model_Checkpoint
      */
     public function getOverviewCheckpoints($product)
@@ -256,19 +256,19 @@ class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
                 );
             }
         }
-        
+
         return $checkpoints;
     }
-    
+
     /**
      * add checkpoint for product visibility
-     * 
+     *
      * @param string  $name         Name of the checkpoint
      * @param boolean $visible      Status
      * @param string  $howto        Explanation how to change this 
      * @param string  $details      Some details for the user
      * @param array   $dependencies Array of names of checkpoints this one depends on
-     * 
+     *
      * @return Quafzi_Productvisibility_Model_Checkpoint
      */
     public function createCheckpoint($name, $visible, $howto, $details='',
@@ -281,7 +281,7 @@ class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
             ->setVisibility($visible)
             ->setDetails($details)
             ->setDependencies($dependencies);
-        
+
         return $checkpoint;
     }
 }
