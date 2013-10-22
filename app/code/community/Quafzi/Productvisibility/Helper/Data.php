@@ -3,17 +3,15 @@
  * @category  Mage
  * @package   Mage_Catalog
  * @author    Thomas Birke <tbirke@netextreme.de>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
  * Quafzi_Productvisibility
  *
- * @category  Catalog
+ * @category  Mage
  * @package   Quafzi_Productvisibility
  * @author    Thomas Birke <tbirke@netextreme.de>
- * @copyright 2011 Netresearch GmbH & Co.KG <http://www.netresearch.de/>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 class Quafzi_Productvisibility_Helper_Data extends Mage_Core_Helper_Abstract
 {

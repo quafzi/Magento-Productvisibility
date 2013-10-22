@@ -1,18 +1,17 @@
 <?php
 /**
- * @category  Mage
- * @package   Mage_Catalog
- * @author    Thomas Birke <tbirke@netextreme.de>
+ * @category Mage
+ * @package  Quafzi_Productvisibility
+ * @author   Thomas Birke <tbirke@netextreme.de>
  */
 
 /**
  * Quafzi_Productvisibility_Model_Observer
  *
- * @category  Quafzi_Productvisibility
- * @package   Quafzi_Productvisibility
- * @author    Thomas Birke <tbirke@netextreme.de>
- * @copyright 2011 Netresearch GmbH & Co.KG <http://www.netresearch.de/>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @category Mage
+ * @package  Quafzi_Productvisibility
+ * @author   Thomas Birke <tbirke@netextreme.de>
+ * @license  http://www.opensource.org/licenses/mit-license.html  MIT License
  */
 class Quafzi_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Visibility
     extends Mage_Adminhtml_Block_Widget implements Mage_Adminhtml_Block_Widget_Tab_Interface

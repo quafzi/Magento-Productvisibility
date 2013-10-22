@@ -3,7 +3,6 @@
  * @category  Mage
  * @package   Quafzi_Productvisibility
  * @author    Thomas Birke <tbirke@netextreme.de>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
 /**
@@ -12,7 +11,7 @@
  * @category  Catalog
  * @package   Quafzi_Productvisibility
  * @author    Thomas Birke <tbirke@netextreme.de>
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
  *
  * @method Quafzi_Productvisibility_Model_Checkpoint setName()       setName(string $value)        Set the name of the checkpoint
  * @method string                                    getName()       getName()                     Get the name of the checkpoint

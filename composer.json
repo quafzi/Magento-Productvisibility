@@ -2,6 +2,7 @@
     "name": "quafzi/product-visibility",
     "type": "magento-module",
     "description": "This extension shows, why a product is visible for customers - or why not.",
+    "license": "MIT",
     "authors": [
         {
             "name": "Thomas Birke",
