@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<!-- 
+<!--
 /**
- * @category   Netresearch_Productvisibility
- * @package    Netresearch_Productvisibility
- * @author     Thomas Kappel <thomas.kappel@netresearch.de>
+ * @category   Quafzi_Productvisibility
+ * @package    Quafzi_Productvisibility
+ * @author     Thomas Birke <tbirke@netextreme.de>
  * @copyright  2011 Netresearch GmbH & Co.KG <http://www.netresearch.de/>
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  **/
@@ -11,24 +11,24 @@
 
 <config>
     <modules>
-        <Netresearch_Productvisibility>
-            <version>0.1.0</version>
-        </Netresearch_Productvisibility>
+        <Quafzi_Productvisibility>
+            <version>1.0.0</version>
+        </Quafzi_Productvisibility>
     </modules>
     <global>
         <blocks>
             <productvisibility>
-                <class>Netresearch_Productvisibility_Block</class>
+                <class>Quafzi_Productvisibility_Block</class>
             </productvisibility>
         </blocks>
         <helpers>
             <productvisibility>
-                <class>Netresearch_Productvisibility_Helper</class>
+                <class>Quafzi_Productvisibility_Helper</class>
             </productvisibility>
         </helpers>
         <models>
             <productvisibility>
-                <class>Netresearch_Productvisibility_Model</class>
+                <class>Quafzi_Productvisibility_Model</class>
             </productvisibility>
         </models>
     </global>
@@ -36,21 +36,21 @@
         <layout>
             <updates>
                 <productvisibility>
-                    <file>netresearch/productvisibility.xml</file>
+                    <file>quafzi/productvisibility.xml</file>
                 </productvisibility>
             </updates>
         </layout>
         <translate>
             <modules>
-                <Netresearch_Productvisibility>
+                <Quafzi_Productvisibility>
                     <files>
-                        <default>Netresearch_Productvisibility.csv</default>
+                        <default>Quafzi_Productvisibility.csv</default>
                     </files>
-                </Netresearch_Productvisibility>
+                </Quafzi_Productvisibility>
             </modules>
         </translate>
         <events>
-            <netresearch_product_visibility_checkpoints_load>
+            <quafzi_product_visibility_checkpoints_load>
                 <observers>
                     <productvisibility>
                         <type>singleton</type>
@@ -58,7 +58,7 @@
                         <method>addConfigurableCheckpoints</method>
                     </productvisibility>
                 </observers>
-            </netresearch_product_visibility_checkpoints_load>
+            </quafzi_product_visibility_checkpoints_load>
         </events>
     </adminhtml>
 </config>

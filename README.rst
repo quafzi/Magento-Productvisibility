@@ -19,7 +19,7 @@ should_ be visible.
 You'll find the output of this module as a new tab of the
 product edit page in the backend of Magento.
 
-Netresearch_Productvisibility has `not a finished state`_, so much work has to
+Quafzi_Productvisibility has `not a finished state`_, so much work has to
 be done to improve it.
 
 .. _`not a finished state`: Issues_
@@ -95,7 +95,7 @@ If you want to add a new checkpoint, just catch the event like this:
     <config>
         <adminhtml>
             <events>
-                <netresearch_product_visibility_checkpoints_load>
+                <quafzi_product_visibility_checkpoints_load>
                     <observers>
                         <my_module>
                             <type>singleton</type>
@@ -103,7 +103,7 @@ If you want to add a new checkpoint, just catch the event like this:
                             <method>addCheckpoint</method>
                         </my_module>
                     </observers>
-                </netresearch_product_visibility_checkpoints_load>
+                </quafzi_product_visibility_checkpoints_load>
             </events>
         </adminhtml>
     </config>
@@ -122,7 +122,7 @@ Now you can add a new checkpoint in the observer:
     public function addCheckpoint(Varien_Event_Observer $observer)
     {
         /**
-         * @var Netresearch_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Visibility
+         * @var Quafzi_Productvisibility_Block_Adminhtml_Catalog_Product_Edit_Tab_Visibility
          */
         $block = $observer->getEvent()->getVisibilityBlock();
         $block->addCheckpoint(

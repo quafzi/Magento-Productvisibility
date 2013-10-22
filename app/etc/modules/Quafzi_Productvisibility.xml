@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <!--
  * @category   Catalog
- * @package    Netresearch_Productvisibility
- * @author     Thomas Kappel <thomas.kappel@netresearch.de>
+ * @package    Quafzi_Productvisibility
+ * @author     Thomas Birke <tbirke@netextreme.de>
  * @copyright  2011 Netresearch GmbH & Co.KG <http://www.netresearch.de/>
  * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
 -->
 
 <config>
     <modules>
-        <Netresearch_Productvisibility>
+        <Quafzi_Productvisibility>
             <active>true</active>
             <codePool>community</codePool>
             <depends>
                 <Mage_Catalog />
             </depends>
-        </Netresearch_Productvisibility>
+        </Quafzi_Productvisibility>
     </modules>
 </config>

@@ -1,7 +1,7 @@
 <layout>
     <adminhtml_catalog_product_edit>
         <reference name="head">
-            <action method="addCss"><name>netresearch/productvisibility.css</name></action>
+            <action method="addCss"><name>quafzi/productvisibility.css</name></action>
         </reference>
         <reference name="product_tabs">
             <action method="addTab">

@@ -1,7 +1,7 @@
-app/etc/modules/Netresearch_Productvisibility.xml	app/etc/modules/Netresearch_Productvisibility.xml
-app/code/community/Netresearch/Productvisibility	app/code/community/Netresearch/Productvisibility/
-app/design/adminhtml/default/default/layout/netresearch/productvisibility.xml	app/design/adminhtml/default/default/layout/netresearch/productvisibility.xml
-app/design/adminhtml/default/default/template/netresearch/productvisibility		app/design/adminhtml/default/default/template/netresearch/productvisibility
-app/locale/de_DE/Netresearch_Productvisibility.csv	app/locale/de_DE/Netresearch_Productvisibility.csv
-app/locale/en_US/Netresearch_Productvisibility.csv	app/locale/en_US/Netresearch_Productvisibility.csv
-skin/adminhtml/default/default/netresearch/productvisibility.css	skin/adminhtml/default/default/netresearch/productvisibility.css
+app/etc/modules/Quafzi_Productvisibility.xml app/etc/modules/Quafzi_Productvisibility.xml
+app/code/community/Quafzi/Productvisibility app/code/community/Quafzi/Productvisibility/
+app/design/adminhtml/default/default/layout/quafzi/productvisibility.xml app/design/adminhtml/default/default/layout/quafzi/productvisibility.xml
+app/design/adminhtml/default/default/template/quafzi/productvisibility app/design/adminhtml/default/default/template/quafzi/productvisibility
+app/locale/de_DE/Quafzi_Productvisibility.csv app/locale/de_DE/Quafzi_Productvisibility.csv
+app/locale/en_US/Quafzi_Productvisibility.csv app/locale/en_US/Quafzi_Productvisibility.csv
+skin/adminhtml/default/default/quafzi/productvisibility.css skin/adminhtml/default/default/quafzi/productvisibility.css
